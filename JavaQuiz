@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class Quiz {
+    public static void main(String[] args) {
+        Scanner ler = new Scanner(System.in);
+        String resp;
+
+        String[][] questoes = {
+            {"Qual é o maior planeta do sistema solar?",
+            "A) Terra", "B) Marte", "C) Júpiter", "D) Saturno", "E) Netuno", "C"},
+            {"Em que ano começou a Segunda Guerra Mundial?",
+            "A) 1939", "B) 1941", "C) 1945", "D) 1935", "E) 1943", "A"},
+            {"Qual é a capital do Canadá?",
+            "A) Toronto", "B) Vancouver", "C) Ottawa", "D) Montreal", "E) Quebec", "C"},
+            {"Quem pintou a Mona Lisa?",
+            "A) Vincent van Gogh", "B) Pablo Picasso", "C) Leonardo da Vinci", "D) Michelangelo", "E) Claude Monet", "C"},
+            {"Qual é o maior órgão do corpo humano?",
+            "A) Cérebro", "B) Fígado", "C) Pulmão", "D) Pele", "E) Coração", "D"},
+            {"Quantos continentes existem no mundo?",
+            "A) 5", "B) 6", "C) 7", "D) 4", "E) 8", "B"},
+            {"Qual é o símbolo químico do ouro?",
+            "A) Ag", "B) Au", "C) Fe", "D) Pb", "E) Cu", "B"},
+            {"Quem escreveu 'Dom Quixote'?",
+            "A) Miguel de Cervantes", "B) Gabriel García Márquez", "C) Pablo Neruda", "D) Jorge Luis Borges", "E) Fernando Pessoa", "A"},
+            {"Qual é o rio mais longo do mundo?",
+            "A) Amazonas", "B) Nilo", "C) Yangtzé", "D) Mississipi", "E) Danúbio", "A"},
+            {"Em que país nasceu Adolf Hitler?",
+            "A) Alemanha", "B) Áustria", "C) Polônia", "D) França", "E) Suíça", "B"},
+            {"Qual é o nome do processo de divisão celular?",
+            "A) Fotossíntese", "B) Mitose", "C) Respiração", "D) Digestão", "E) Osmose", "B"},
+            {"Qual destes não é um sistema operacional?",
+            "A) Windows", "B) Linux", "C) macOS", "D) Android", "E) Google Chrome", "E"},
+            {"Quantos elementos químicos a tabela periódica possui?",
+            "A) 108", "B) 118", "C) 92", "D) 120", "E) 126", "B"},
+            {"Qual é o animal mais rápido do mundo?",
+            "A) Guepardo", "B) Falcão-peregrino", "C) Peixe-vela", "D) Libélula", "E) Antílope", "B"},
+            {"Qual destes países não faz parte da União Europeia?",
+            "A) Suíça", "B) França", "C) Alemanha", "D) Itália", "E) Espanha", "A"}
+        };
+
+        int pontuacao = 0;
+
+        for (String[] questao : questoes) {
+            escrevaQuestao(questao);
+            do {
+                resp = ler.next();
+            } while (!respostaValida(resp));
+
+            if (resp.equalsIgnoreCase(questao[6])) {
+                pontuacao++;
+                System.out.println("Resposta correta!\n");
+            } else {
+                System.out.println("Resposta errada! A resposta correta era: " + questao[6] + "\n");
+            }
+        }
+
+        System.out.println("Você acertou " + pontuacao + " de " + questoes.length + " perguntas.");
+        
+        double percentualAcertos = ((double) pontuacao / questoes.length) * 100;
+        System.out.printf("Sua porcentagem de acertos foi: %.2f%%\n", percentualAcertos);
+        
+        ler.close();
+    }
+
+    private static boolean respostaValida(String resp) {
+        if (resp.equalsIgnoreCase("A") || resp.equalsIgnoreCase("B") || 
+            resp.equalsIgnoreCase("C") || resp.equalsIgnoreCase("D") || 
+            resp.equalsIgnoreCase("E")) {
+            return true;
+        }
+        System.out.println("Resposta inválida! Digite A, B, C, D ou E.");
+        return false;
+    }
+
+    private static void escrevaQuestao(String[] questao) {
+        System.out.println(questao[0]);
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(questao[i]);
+        }
+        System.out.print("\nSua resposta: ");
+    }
+}
